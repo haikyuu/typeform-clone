@@ -3,9 +3,15 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "normalizr": "^3.2.4",
+    "prop-types": "^15.6.0",
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
-    "react-scripts": "1.1.0"
+    "react-redux": "^5.0.6",
+    "react-router": "^4.2.0",
+    "react-router-dom": "^4.2.2",
+    "react-scripts": "1.1.0",
+    "redux": "^3.7.2"
   },
   "scripts": {
     "precommit": "lint-staged",
@@ -15,9 +21,12 @@
     "eject": "react-scripts eject"
   },
   "lint-staged": {
-   "src/**/*.{js,jsx,json,css}": [
-     "prettier --single-quote --write",
-     "git add"
-   ]
- }
+    "src/**/*.{js,jsx,json,css}": [
+      "prettier --single-quote --write",
+      "git add"
+    ]
+  },
+  "devDependencies": {
+    "lint-staged": "^6.1.0"
+  }
 }
