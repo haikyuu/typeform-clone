@@ -22,11 +22,12 @@
   },
   "lint-staged": {
     "src/**/*.{js,jsx,json,css}": [
-      "prettier --single-quote --write",
+      "./node_modules/.bin/prettier --no-semi --write",
       "git add"
     ]
   },
   "devDependencies": {
-    "lint-staged": "^6.1.0"
+    "lint-staged": "^6.1.0",
+    "prettier": "^1.10.2"
   }
 }
