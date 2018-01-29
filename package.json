@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "gh-pages": "^1.1.0",
     "normalizr": "^3.2.4",
     "prop-types": "^15.6.0",
     "react": "^16.2.0",
@@ -18,7 +19,9 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build"
   },
   "lint-staged": {
     "src/**/*.{js,jsx,json,css}": [
@@ -29,5 +32,6 @@
   "devDependencies": {
     "lint-staged": "^6.1.0",
     "prettier": "^1.10.2"
-  }
+  },
+  "homepage": "https://haikyuu.github.io/typeform-clone"
 }
