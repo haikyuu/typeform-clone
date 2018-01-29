@@ -133,13 +133,19 @@ class Questions extends React.Component {
             )}
           </div>
           <span>
-            <button onClick={this.onNextPress}>OK</button>
+            <button className="button ok_button" onClick={this.onNextPress}>
+              OK
+            </button>
             <span className="enter_text">Press Enter</span>
           </span>
           {hasError && <span>{error}</span>}
         </div>
         <div className="footer">
-          <button disabled={!previousQuestionId} onClick={this.onPreviousPress}>
+          <button
+            className="button"
+            disabled={!previousQuestionId}
+            onClick={this.onPreviousPress}
+          >
             Previous
           </button>
           <div className="progress">
@@ -147,11 +153,15 @@ class Questions extends React.Component {
               {parseInt(progress * 100, 10)}% completed
             </span>
             <div className="progress_bar-container">
-              <div className="progress_bar" style={{ width: `20%` }} />
+              <div
+                className="progress_bar"
+                style={{ width: `${progress * 100}%` }}
+              />
             </div>
           </div>
 
           <button
+            className="button"
             disabled={progress !== 1}
             onClick={() => this.onNextPress(true)}
           >

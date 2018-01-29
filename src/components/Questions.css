@@ -13,6 +13,31 @@
   flex-direction: column;
   justify-content: center;
   align-items: flex-start;
+  margin-left: 15px;
+  margin-right: 15px;
+}
+.question {
+  margin-bottom: 10px;
+}
+.reply {
+  margin-bottom: 10px;
+}
+.question span {
+  font-size: 25px;
+}
+.reply input {
+  height: 32px;
+  width: 280px;
+}
+.button {
+  height: 40px;
+  width: 75px;
+}
+.ok_button {
+  margin-right: 7.5px;
+}
+.enter_text {
+  font-size: 10px;
 }
 .footer {
   display: flex;
@@ -20,20 +45,18 @@
   background-color: lightgrey;
   height: 40px;
 }
-.enter_text {
-  font-size: 10px;
-}
 .progress {
 }
 .progress-count {
   font-size: 12px;
 }
 .progress_bar-container {
-  width: 200px;
+  width: 180px;
   height: 10px;
   background-color: white;
 }
 .progress_bar {
   background-color: papayawhip;
   height: 100%;
+  transition: width 0.8s;
 }
