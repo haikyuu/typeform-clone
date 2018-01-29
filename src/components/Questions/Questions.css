@@ -75,3 +75,11 @@
   font-size: 14px;
   min-height: 120px;
 }
+@media only screen and (max-height: 320px) {
+  .questions-content {
+    margin-top: 0;
+  }
+  .questions_error {
+    min-height: 0;
+  }
+}
