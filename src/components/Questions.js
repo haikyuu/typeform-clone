@@ -2,26 +2,14 @@ import React, { Fragment } from "react"
 import PropTypes from "prop-types"
 import { connect } from "react-redux"
 import { changeCurrentQuestion, saveQuestionReply } from "../state/actions"
-import { history, isOfType } from "../helpers"
-
-const questionPropType = PropTypes.shape({
-  id: PropTypes.string.isRequired,
-  text: PropTypes.string.isRequired,
-  reply: PropTypes.oneOfType([
-    PropTypes.string, // no reply || string
-    PropTypes.instanceOf(Date),
-    PropTypes.number,
-    PropTypes.bool
-  ]).isRequired,
-  type: PropTypes.oneOf(["string", "boolean", "date", "number"]).isRequired,
-  next: PropTypes.string
-})
+import { getProgress, getPreviousQuestion } from "../state/selectors"
+import { history, isOfType, questionPropType } from "../helpers"
 
 class Questions extends React.Component {
   static propTypes = {
     question: questionPropType.isRequired,
     previousQuestionId: PropTypes.string,
-    progress: PropTypes.number,
+    progress: PropTypes.number.isRequired,
     changeCurrentQuestion: PropTypes.func.isRequired,
     saveQuestionReply: PropTypes.func.isRequired
   }
@@ -48,7 +36,7 @@ class Questions extends React.Component {
   componentDidMount() {
     this.input && this.input.focus()
   }
-  onNextPress = () => {
+  onNextPress = isSubmit => {
     const {
       question: { next, id, type },
       changeCurrentQuestion,
@@ -72,9 +60,8 @@ class Questions extends React.Component {
       return
     }
     saveQuestionReply(id, convertedValue)
-    if (next) {
+    if (next && isSubmit !== true) {
       changeCurrentQuestion(next)
-      // this.input.focus()
     } else {
       // Go to submission page
       history.push("/submission")
@@ -104,7 +91,7 @@ class Questions extends React.Component {
     }
   }
   render() {
-    const { question, previousQuestionId } = this.props
+    const { question, previousQuestionId, progress } = this.props
     const { reply, hasError, error } = this.state
     return (
       <div>
@@ -143,32 +130,21 @@ class Questions extends React.Component {
           />
         )}
         <button onClick={this.onNextPress}>Next</button>
+        {progress === 1 ? (
+          <button onClick={() => this.onNextPress(true)}>Submit</button>
+        ) : null}
         {hasError && error}
       </div>
     )
   }
 }
-const getPreviousQuestion = (questionsById, current, first) => {
-  // linked list traversal
-  let i = first
-  while (questionsById[i]) {
-    if (questionsById[i].next === current) {
-      return i
-    }
-    i = questionsById[i].next
-  }
-  return null
-}
 const mapStateToProps = state => ({
   question: state.questions.byId[state.questions.currentQuestion],
-  previousQuestionId: getPreviousQuestion(
-    state.questions.byId,
-    state.questions.currentQuestion,
-    state.questions.firstQuestion
-  ) // reselect is probably an overkill for one case
+  previousQuestionId: getPreviousQuestion(state),
+  progress: getProgress(state)
 })
 const mapDispatchToProps = dispatch => ({
-  changeCurrentQuestion: next => dispatch(changeCurrentQuestion(next)),
+  changeCurrentQuestion: id => dispatch(changeCurrentQuestion(id)),
   saveQuestionReply: (id, reply) => dispatch(saveQuestionReply(id, reply))
 })
 export default connect(mapStateToProps, mapDispatchToProps)(Questions)
