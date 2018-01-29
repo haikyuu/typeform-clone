@@ -1,10 +1,3 @@
-import data from "../helpers/data"
-import { normalize, schema } from "normalizr"
-
-const question = new schema.Entity("questions")
-const mySchema = { questions: [question] }
-const { entities, result } = normalize(data, mySchema)
-
 // Actions
 export const changeCurrentQuestion = id => ({
   type: "QUESTIONS/CHANGE_CURRENT_QUESTION",
@@ -17,10 +10,10 @@ export const saveQuestionReply = (id, reply) => ({
 })
 // State shape & Initial state
 const initialState = {
-  byId: entities.questions,
-  all: result.questions,
-  currentQuestion: data.questions[0].id,
-  firstQuestion: data.questions[0].id
+  byId: {},
+  all: [],
+  currentQuestion: null,
+  firstQuestion: null
 }
 
 // Reducer
