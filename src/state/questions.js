@@ -5,6 +5,13 @@ const question = new schema.Entity("questions")
 const mySchema = { questions: [question] }
 const { entities, result } = normalize(data, mySchema)
 
+// Actions
+export const changeCurrentQuestion = id => ({
+  type: "QUESTIONS/CHANGE_CURRENT_QUESTION",
+  id
+})
+
+// Reducer
 const initialState = {
   byId: entities.questions,
   all: result.questions,
@@ -12,7 +19,7 @@ const initialState = {
 }
 const questions = (state = initialState, action) => {
   switch (action.type) {
-    case "NEXT_QUESTION":
+    case "QUESTIONS/CHANGE_CURRENT_QUESTION":
       const currentQuestion = state.byId[state.currentQuestion]
       return {
         ...state,
