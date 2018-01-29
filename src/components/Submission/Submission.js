@@ -1,9 +1,9 @@
 import React from "react"
 import PropTypes from "prop-types"
 import { connect } from "react-redux"
-import { questionPropType, history } from "../helpers"
-import { getQuestions } from "../state/selectors"
-import { changeCurrentQuestion } from "../state/actions"
+import { questionPropType, history } from "../../helpers"
+import { getQuestions } from "../../state/selectors"
+import { changeCurrentQuestion } from "../../state/actions"
 import "./Submission.css"
 
 class Submission extends React.Component {
@@ -55,4 +55,6 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = dispatch => ({
   changeCurrentQuestion: id => dispatch(changeCurrentQuestion(id))
 })
+
+export { Submission }
 export default connect(mapStateToProps, mapDispatchToProps)(Submission)

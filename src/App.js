@@ -4,8 +4,8 @@ import { createStore } from "redux"
 import { Router, Route, Redirect, Switch } from "react-router-dom"
 import { history } from "./helpers"
 import state from "./state"
-import Questions from "./components/Questions"
-import Submission from "./components/Submission"
+import Questions from "./components/Questions/Questions"
+import Submission from "./components/Submission/Submission"
 import "./App.css"
 
 const store = createStore(

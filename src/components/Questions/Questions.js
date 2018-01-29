@@ -1,9 +1,9 @@
 import React, { Fragment } from "react"
 import PropTypes from "prop-types"
 import { connect } from "react-redux"
-import { changeCurrentQuestion, saveQuestionReply } from "../state/actions"
-import { getProgress, getPreviousQuestion } from "../state/selectors"
-import { history, isOfType, questionPropType } from "../helpers"
+import { changeCurrentQuestion, saveQuestionReply } from "../../state/actions"
+import { getProgress, getPreviousQuestion } from "../../state/selectors"
+import { history, isOfType, questionPropType } from "../../helpers"
 import "./Questions.css"
 
 class Questions extends React.Component {
