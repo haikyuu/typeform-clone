@@ -23,7 +23,6 @@ describe("<Foo />", () => {
         }
       }
     }
-    console.log("answers: ", answers)
     expect(answers.length).toEqual(0)
   })
 })

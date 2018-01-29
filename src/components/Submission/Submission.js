@@ -16,6 +16,17 @@ class Submission extends React.Component {
     changeCurrentQuestion(id)
     history.push("/questions")
   }
+  formatReply = (type, reply) => {
+    if (type === "boolean" && [true, false].indexOf(reply) > -1) {
+      return reply === true ? "Yes" : "No"
+    } else if (reply === "") {
+      return ""
+    } else if (type === "date") {
+      return new Date(reply).toLocaleDateString()
+    } else {
+      return reply
+    }
+  }
   render() {
     const { questions } = this.props
     return (
@@ -36,11 +47,7 @@ class Submission extends React.Component {
                 </button>
               </div>
               <span className="submission-reply">
-                {question.type === "boolean"
-                  ? question.reply ? "Yes" : "No"
-                  : question.type === "date" && question.reply
-                    ? new Date(question.reply).toLocaleDateString()
-                    : `${question.reply}`}
+                {this.formatReply(question.type, question.reply)}
               </span>
             </div>
           ))}
