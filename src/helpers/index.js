@@ -18,8 +18,7 @@ export const isOfType = (rawValue, expectedType) => {
   let res = type(rawValue) === expectedType
 
   if (expectedType === "date") {
-    val = new Date(rawValue) // will be store in redux as a string anyway
-    res = !isNaN(val.getTime())
+    res = !isNaN(new Date(rawValue).getTime())
   } else if (expectedType === "number") {
     val = parseFloat(rawValue)
     res = !isNaN(val)
