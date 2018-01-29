@@ -4,6 +4,7 @@ import { connect } from "react-redux"
 import { changeCurrentQuestion, saveQuestionReply } from "../state/actions"
 import { getProgress, getPreviousQuestion } from "../state/selectors"
 import { history, isOfType, questionPropType } from "../helpers"
+import "./Questions.css"
 
 class Questions extends React.Component {
   static propTypes = {
@@ -94,46 +95,69 @@ class Questions extends React.Component {
     const { question, previousQuestionId, progress } = this.props
     const { reply, hasError, error } = this.state
     return (
-      <div>
-        <button disabled={!previousQuestionId} onClick={this.onPreviousPress}>
-          Previous
-        </button>
-        <span>{question.text}</span>
-        {question.type === "boolean" ? (
-          <Fragment>
-            <label htmlFor="Question">
+      <div className="container">
+        <div className="content">
+          <div className="question">
+            <span>{question.text}</span>
+          </div>
+          <div className="reply">
+            {question.type === "boolean" ? (
+              <Fragment>
+                <label htmlFor="Question">
+                  <input
+                    name="Question"
+                    type="radio"
+                    checked={reply === true}
+                    value={true}
+                    onChange={this.onRadioChange}
+                  />YES
+                </label>
+                <label htmlFor="Question">
+                  <input
+                    name="Question"
+                    type="radio"
+                    checked={reply === false}
+                    value={false}
+                    onChange={this.onRadioChange}
+                  />NO
+                </label>
+              </Fragment>
+            ) : (
               <input
-                name="Question"
-                type="radio"
-                checked={reply === true}
-                value={true}
-                onChange={this.onRadioChange}
-              />YES
-            </label>
-            <label htmlFor="Question">
-              <input
-                name="Question"
-                type="radio"
-                checked={reply === false}
-                value={false}
-                onChange={this.onRadioChange}
-              />NO
-            </label>
-          </Fragment>
-        ) : (
-          <input
-            ref={ref => (this.input = ref)}
-            onKeyPress={this.onKeyPress}
-            type={this.getInputType(question.type)}
-            value={reply}
-            onChange={this.onInputChange}
-          />
-        )}
-        <button onClick={this.onNextPress}>Next</button>
-        {progress === 1 ? (
-          <button onClick={() => this.onNextPress(true)}>Submit</button>
-        ) : null}
-        {hasError && error}
+                ref={ref => (this.input = ref)}
+                onKeyPress={this.onKeyPress}
+                type={this.getInputType(question.type)}
+                value={reply}
+                onChange={this.onInputChange}
+              />
+            )}
+          </div>
+          <span>
+            <button onClick={this.onNextPress}>OK</button>
+            <span className="enter_text">Press Enter</span>
+          </span>
+          {hasError && <span>{error}</span>}
+        </div>
+        <div className="footer">
+          <button disabled={!previousQuestionId} onClick={this.onPreviousPress}>
+            Previous
+          </button>
+          <div className="progress">
+            <span className="progress-count">
+              {parseInt(progress * 100, 10)}% completed
+            </span>
+            <div className="progress_bar-container">
+              <div className="progress_bar" style={{ width: `20%` }} />
+            </div>
+          </div>
+
+          <button
+            disabled={progress !== 1}
+            onClick={() => this.onNextPress(true)}
+          >
+            Submit
+          </button>
+        </div>
       </div>
     )
   }
