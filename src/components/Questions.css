@@ -25,9 +25,12 @@
 .question span {
   font-size: 25px;
 }
-.reply input {
+.regular-input {
   height: 32px;
   width: 280px;
+}
+.boolean-label {
+  margin-right: 15px;
 }
 .button {
   height: 40px;

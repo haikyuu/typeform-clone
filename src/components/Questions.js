@@ -103,27 +103,33 @@ class Questions extends React.Component {
           <div className="reply">
             {question.type === "boolean" ? (
               <Fragment>
-                <label htmlFor="Question">
-                  <input
-                    name="Question"
-                    type="radio"
-                    checked={reply === true}
-                    value={true}
-                    onChange={this.onRadioChange}
-                  />YES
+                <input
+                  className="boolean-input"
+                  name="Question"
+                  type="radio"
+                  checked={reply === true}
+                  value={true}
+                  onChange={this.onRadioChange}
+                />
+                <label htmlFor="Question" className="boolean-label">
+                  Yes
                 </label>
-                <label htmlFor="Question">
-                  <input
-                    name="Question"
-                    type="radio"
-                    checked={reply === false}
-                    value={false}
-                    onChange={this.onRadioChange}
-                  />NO
+
+                <input
+                  className="boolean-input left"
+                  name="Question"
+                  type="radio"
+                  checked={reply === false}
+                  value={false}
+                  onChange={this.onRadioChange}
+                />
+                <label htmlFor="Question" className="boolean-label">
+                  No
                 </label>
               </Fragment>
             ) : (
               <input
+                className="regular-input"
                 ref={ref => (this.input = ref)}
                 onKeyPress={this.onKeyPress}
                 type={this.getInputType(question.type)}
