@@ -1,1 +1,36 @@
-
+.submission-container {
+  border: 1px lightgrey solid;
+  background-color: aliceblue;
+}
+.title {
+  text-align: center;
+}
+.items-container {
+  max-width: 800px;
+  border: 1px lightblue solid;
+  margin: auto;
+  margin-top: 30px;
+}
+.submission-item {
+  padding: 7.5px;
+  border-bottom: 1px lightblue solid;
+  min-height: 80px;
+}
+.submission-question_container {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 15px;
+}
+.submission-question {
+  font-size: 22px;
+  font-weight: 500;
+  margin-right: 15px;
+}
+.submission-reply {
+  font-size: 17px;
+  font-weight: 700;
+}
+.edit-button {
+  width: 60px;
+  height: 37.5px;
+}

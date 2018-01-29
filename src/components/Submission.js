@@ -4,6 +4,7 @@ import { connect } from "react-redux"
 import { questionPropType, history } from "../helpers"
 import { getQuestions } from "../state/selectors"
 import { changeCurrentQuestion } from "../state/actions"
+import "./Submission.css"
 
 class Submission extends React.Component {
   static propTypes = {
@@ -18,19 +19,32 @@ class Submission extends React.Component {
   render() {
     const { questions } = this.props
     return (
-      <div>
-        {questions.map((question, index) => (
-          <div key={question.id}>
-            <span>{`${index}. ${question.text}`}</span>
-            <br />
-            <span>
-              {question.type === "boolean"
-                ? question.reply ? "Yes" : "No"
-                : `${question.reply}`}
-            </span>
-            <button onClick={() => this.onEdit(question.id)}>Edit</button>
-          </div>
-        ))}
+      <div className="submission-container">
+        <h1 className="title">Submission</h1>
+        <div className="items-container">
+          {questions.map((question, index) => (
+            <div className="submission-item" key={question.id}>
+              <div className="submission-question_container">
+                <span className="submission-question">{`${index + 1}. ${
+                  question.text
+                }`}</span>
+                <button
+                  className="edit-button"
+                  onClick={() => this.onEdit(question.id)}
+                >
+                  Edit
+                </button>
+              </div>
+              <span className="submission-reply">
+                {question.type === "boolean"
+                  ? question.reply ? "Yes" : "No"
+                  : question.type === "date" && question.reply
+                    ? new Date(question.reply).toLocaleDateString()
+                    : `${question.reply}`}
+              </span>
+            </div>
+          ))}
+        </div>
       </div>
     )
   }

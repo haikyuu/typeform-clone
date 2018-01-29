@@ -95,8 +95,8 @@ class Questions extends React.Component {
     const { question, previousQuestionId, progress } = this.props
     const { reply, hasError, error } = this.state
     return (
-      <div className="container">
-        <div className="content">
+      <div className="questions-container">
+        <div className="questions-content">
           <div className="question">
             <span>{question.text}</span>
           </div>

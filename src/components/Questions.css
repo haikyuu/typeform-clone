@@ -1,4 +1,4 @@
-.container {
+.questions-container {
   width: 100%;
   height: 100%;
   background-color: aliceblue;
@@ -6,7 +6,7 @@
   flex-direction: column;
 }
 
-.content {
+.questions-content {
   flex: 1;
   align-self: center;
   display: flex;
@@ -34,7 +34,7 @@
 }
 .button {
   height: 40px;
-  width: 75px;
+  min-width: 65px;
 }
 .ok_button {
   margin-right: 7.5px;
@@ -47,6 +47,7 @@
   justify-content: space-between;
   background-color: lightgrey;
   height: 40px;
+  align-items: center;
 }
 .progress {
 }
@@ -55,7 +56,7 @@
 }
 .progress_bar-container {
   width: 180px;
-  height: 10px;
+  height: 15px;
   background-color: white;
 }
 .progress_bar {
