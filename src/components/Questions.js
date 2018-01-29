@@ -37,7 +37,14 @@ class Questions extends React.Component {
   componentDidMount() {
     this.input && this.input.focus()
   }
+  clearError = () => {
+    this.setState({
+      error: "",
+      hasError: false
+    })
+  }
   onNextPress = isSubmit => {
+    this.clearError()
     const {
       question: { next, id, type },
       changeCurrentQuestion,
@@ -48,7 +55,7 @@ class Questions extends React.Component {
     const { res, expected, found, convertedValue } = isOfType(reply, type)
     if (reply === "") {
       this.setState({
-        error: `Oops! you forgot to write a reply (It should be a ${expected}) . Can you please provide one so that we can help you?`,
+        error: `Oops! you forgot to write a reply (It should be a ${expected}).\n Can you please provide one so that we can help you?`,
         hasError: true
       })
       return
@@ -69,6 +76,7 @@ class Questions extends React.Component {
     }
   }
   onPreviousPress = () => {
+    this.clearError()
     const { previousQuestionId, changeCurrentQuestion } = this.props
     changeCurrentQuestion(previousQuestionId)
   }
@@ -138,13 +146,13 @@ class Questions extends React.Component {
               />
             )}
           </div>
-          <span>
+          <span className="ok_container">
             <button className="button ok_button" onClick={this.onNextPress}>
               OK
             </button>
             <span className="enter_text">Press Enter</span>
           </span>
-          {hasError && <span>{error}</span>}
+          {hasError && <span className="questions_error">{error}</span>}
         </div>
         <div className="footer">
           <button

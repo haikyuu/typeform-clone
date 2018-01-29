@@ -64,3 +64,11 @@
   height: 100%;
   transition: width 0.8s;
 }
+.ok_container {
+  margin-bottom: 15px;
+}
+.questions_error {
+  color: #ff4136;
+  max-width: 400px;
+  font-size: 14px;
+}
