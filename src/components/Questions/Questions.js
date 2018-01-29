@@ -152,7 +152,7 @@ class Questions extends React.Component {
             </button>
             <span className="enter_text">Press Enter</span>
           </span>
-          {hasError && <span className="questions_error">{error}</span>}
+          <span className="questions_error">{hasError && error}</span>
         </div>
         <div className="footer">
           <button

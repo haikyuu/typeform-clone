@@ -15,6 +15,7 @@
   align-items: flex-start;
   margin-left: 15px;
   margin-right: 15px;
+  margin-top: 120px; /* fix error  breaking layout when appearing */
 }
 .question {
   margin-bottom: 10px;
@@ -28,6 +29,7 @@
 .regular-input {
   height: 32px;
   width: 280px;
+  font-size: 18px;
 }
 .boolean-label {
   margin-right: 15px;
@@ -71,4 +73,5 @@
   color: #ff4136;
   max-width: 400px;
   font-size: 14px;
+  min-height: 120px;
 }
